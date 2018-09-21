@@ -27,7 +27,8 @@ Project Setup
 
 First, download the Go-Ethereum client `geth`
 
-**Install for Mac (via [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac))**
+Install for Mac (via [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac))
+==========
 
 By far the easiest way to install go-ethereum is to use our Homebrew tap. If you don't have Homebrew, [install it first](http://brew.sh/).
 
@@ -39,6 +40,7 @@ brew install ethereum
 ```
 
 After installing, run `geth account new` to create an account on your node.
+
 
 
 Running Clique
