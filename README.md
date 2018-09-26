@@ -1,3 +1,5 @@
+_This tutorial is based on [this Hackernoon Tutorial](https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8) from Salanfe_
+
 # What is Proof of Authority (PoA)? 
 
 
@@ -16,40 +18,26 @@ Table of contents
 =================
 <!--ts-->
    * [Project Setup](#project-setup)
-   * [Running Clique](#implementing-the-contract)
+   * [Configuring Clique via Puppeth](#configuring-clique-via-puppeth)
    * [Starting the Network](#starting-the-network)
-   * [Extra Credit](#extra-credit)
+   * [Private Transactions](#private-transactions)
    * [Further-Reading](#further-reading)
 <!--te-->
 
 Project Setup
 ============
 
-First, download the Go-Ethereum client `geth`
-
-Install for Mac (via [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac))
-==========
-
-By far the easiest way to install go-ethereum is to use our Homebrew tap. If you don't have Homebrew, [install it first](http://brew.sh/).
-
-Then run the following commands to add the tap and install geth:
-
-```
-brew tap ethereum/ethereum
-brew install ethereum
-```
-
-After installing, run `geth account new` to create an account on your node.
+We are assuming you have already downloaded the Go-Ethereum client `geth`. If you do not, [installation instructions are here.](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
 
 
 
-Running Clique
+Configuring Clique via Puppeth
 ============
 
 Starting the Network
 ============
 
-Extra Credit
+Private Transactions
 ============
 
 Further Reading
@@ -57,6 +45,7 @@ Further Reading
 https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8
 https://wiki.parity.io/Proof-of-Authority-Chains
 https://wiki.parity.io/Demo-PoA-tutorial.html
+https://medium.com/@collin.cusce/using-puppeth-to-manually-create-an-ethereum-proof-of-authority-clique-network-on-aws-ae0d7c906cce
 
 https://wiki.parity.io/Proof-of-Authority-Chains
 https://github.com/ethereum/EIPs/issues/225
