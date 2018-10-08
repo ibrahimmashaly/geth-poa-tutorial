@@ -83,7 +83,7 @@ We're getting a new genesis block started, so we're going to type `2` and hit en
 
 ![Consensus](/images/puppeth-3.png)
 
-Ethereum Mainnet currently runs on **[Proof-of-Work consensus.](https://cointelegraph.com/explained/proof-of-work-explained)** That's an awesome consensus mechanism for large networks sprawling the globle in a trustless manner, but for our small, down-home network, we're going to choose **Clique, [a Proof-of-Authority] consensus mechanism.(https://en.wikipedia.org/wiki/Proof-of-authority)**
+Ethereum Mainnet currently runs on **[Proof-of-Work consensus.](https://cointelegraph.com/explained/proof-of-work-explained)** That's an awesome consensus mechanism for large networks sprawling the globle in a trustless manner, but for our small, down-home network, we're going to choose **Clique, [a Proof-of-Authority](https://en.wikipedia.org/wiki/Proof-of-authority) consensus mechanism.**
 
 
 ### Block Time
