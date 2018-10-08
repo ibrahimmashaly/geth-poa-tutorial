@@ -11,7 +11,7 @@ ACCOUNTS=()
 
 if [ $1 == "local" ]; then
     local_flag="true"
-    echo $local_flag
+    echo "Running in local mode..."
 fi
 
 
@@ -74,7 +74,7 @@ expect -f ./config/puppeth.expect $num_users ${ACCOUNTS[@]}
 echo "Assembling individual starter nodes..."
 sleep 1
 
-echo "geth --datadir ./ init poa-genesis.json" > "./config/geth-init.sh"
+echo "geth --datadir ./ init poa-genesis.json" > "./config/geth-init.txt"
 
 for ((i=1; i<=$((num_users));i++)); do
             
@@ -86,12 +86,12 @@ for ((i=1; i<=$((num_users));i++)); do
 
     ## check if user is running with "local" variable and make an appropriate start file
     if [ $local_flag="true" ]; then
-        echo "geth --datadir ./ --syncmode 'full' --port ((30310+$i)) --rpc --rpcaddr 'localhost' --rpcport ((8501+$i)) --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock ${ACCOUNTS[(($i-1))]} --password password.txt --mine" > "./config/geth-start-local.sh"
-        cp -R ./config/geth-start-local.sh node$i
+        echo "geth --datadir ./ --syncmode 'full' --port $((30310+$i)) --rpc --rpcaddr 'localhost' --rpcport $((8501+$i)) --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock ${ACCOUNTS[(($i-1))]} --password password.txt --mine" > "./config/geth-start-local.sh"
+        cp -R ./config/geth-start-local.txt node$i
         
     else
         echo "geth --datadir ./ --syncmode 'full' --port 30310 --rpc --rpcaddr 'localhost' --rpcport 8501 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@[178.128.135.172]:30310' --networkid 1515 --gasprice '1' -unlock ${ACCOUNTS[(($i-1))]} --password password.txt --mine" > "./config/geth-start.sh"
-        cp -R ./config/geth-start.sh node$i
+        cp -R ./config/geth-start.txt node$i
     fi
 
     ## copy password file

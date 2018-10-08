@@ -33,6 +33,8 @@ We are assuming you have already downloaded the Go-Ethereum client `geth`. If yo
 
 _Note: This tutorial was created using `geth 1.8.14`_
 
+Please fork this repo and download it to your local machine. Use the terminal to `cd` into the directory `geth-poa-tutorial`.
+
 If you would like to create a new series of accounts, you'll need to install the `expect` package , [Homebrew (Mac) installation instructions are here](http://brewformulas.org/Expect)
 
 
@@ -92,7 +94,7 @@ In blockchain networks, the block time is considered the **"network heartbeat"**
 
 In **Proof-of-Work** on Ethereum and Bitcoin, this time is moderated by a complex algorithm which has a target network time (~10m for Bitcoin, ~14s for Ethereum). It adjusts variables according to the current capacity of miners on the network.
 
-In **Proof-of-Authority,** we don't need that complicated algorithm but we do need a set time to run an orderly network. Since Ethereum's block time is 12-14 seconds, we'll put our network's block time at 7s. 
+In **Proof-of-Authority,** we don't need that complicated algorithm but we do need a set time to run an orderly network. Since Ethereum's block time is 12-14 seconds, we'll put our network's block time at 7 seconds. 
 
 Proof-of-Authority networks can decrease their block time and therefore **increase their transaction throughput** (the number of transactions processed per second). This is a desirable goal for certain blockchain use cases.
 
@@ -109,9 +111,9 @@ _Note: The `0x` prefix help program parsers know whatever follows it as a hexade
 
 ![Pre-Funded Nodes](/images/puppeth-6.png)
 
-**Cryptocurrency units can be created one of two ways.** First, someone can mine new blocks for a network and be rewarded in that cryptocurrency. Second, the creator of a network can designate certain accounts to have a certain balance in the genesis block (also known as a "pre-mine").
+**Cryptocurrency units can be created one of two ways.** First, **someone can mine new blocks for a network** and be rewarded in that cryptocurrency. Second, **the creator of a network can designate certain accounts to have a certain balance** in the genesis block (also known as a "pre-mine").
 
-Here, we are designating which nodes will be "pre-funded" in the genesis block. What  generous folks we are!
+Here, we are designating which nodes will be "pre-funded" in the genesis block. What generous folks we are! 
 
 ### Network ID
 
@@ -132,20 +134,186 @@ Last, we need to export the genesis block `puppeth` has created for us. **Provid
 Starting the Network
 ============
 
+If you haven't done so already, please fork this repo and download it to your local machine. Use your terminal to `cd` into the repo's directory folder. We will assume you are in `geth-poa-terminal` for the instructions below.
+
 ## Launching the Bootnode
+
+While in the directory `geth-poa-tutorial`, please type (or copy paste) the following command and press enter:
+
+```
+bash ./bootnode/bootnode-start-local.sh
+```
+
+This terminal window is now our window into the networking elements of our PoA blockchain. **The `geth` client will attempt to find other nodes via this bootnode** (as described [here](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network)). We have asked it to provide all the information it receives and gives so we can watch the nodes come online and discover each other.
+
+Note: The bootnode acts more as a network router or hub. It is a central point the nodes can contact to pass through their information and receive other nodes' information. It does not contain our custom genesis block.
+
+**_I would recommend enlarging the window and placing it in the upper corner of the window, as shown below:_**
+
+![Bootnode](/images/screen-layout-1.png)
 
 ## Launching Node 1
 
+Now, we will launch our first node. We have designated this to be the only sealer node, so it will be able to start mining blocks immediately.
+
+**Leave the bootnode terminal window open and create a new terminal window. I recommend placing it under the open bootnode terminal**
+
+From `geth-poa-tutorial` in the new terminal window, please enter this command:
+
+```
+cd node1
+```
+
+Then, please enter this command:
+
+```
+geth init poa-genesis.json
+```
+
+You should see the following:
+
+![Node 1](/images/screen-layout-2.png)
+
+We have told the `geth` client: "We'd like you to initialize the Ethereum protocol using this custom genesis block we've created." **This is very important for the tutorial.**
+
+We can see we've been successful when client returns:
+
+```
+Successfully wrote genesis state
+```
+
+Now, we'd like to actually _start_ the Ethereum protocol running on our custom PoA genesis block. To do that, please enter the following command (this is also provided locally in `geth-start-local.txt` located within the `node1` directory):
+
+```
+geth --datadir ./ --syncmode 'full' --port 30311 --rpc --rpcaddr 'localhost' --rpcport 8502 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock 68bae6f599b273dd1e9f6848c29bda0d8b02d3e1 --password password.txt --mine
+```
+
+If all is successful, you should see two things happen:
+
+1. The Ethereum node running on `node1` should start to mine blocks for the network and
+2. The bootnode window will light up with traffic. 
+
+The second phenomenon is `node1` communicating with the bootnode... 
+
+```
+Node 1: '>>>PING' ("Are you there, bootnode? It's me, Node 1, running a custom protocol")
+...
+Bootnode: '<<<PONG' ("Yes, I'm here, Node 1")
+```
+
+...And trying to locate other nodes within the network... 
+
+```
+Node 1: '>>> NEIGHBORS' ("Do you know of any other nodes like me?")
+...
+Bootnode: (`<<< FINDNODE`) ("Here's what I know about other nodes.")
+```
+
+Here's what you should see:
+
+![Node 1 booting up](/images/screen-layout-3.png)
+
 ## Launching Node 2
 
+We're going to do the same thing with Node 2, with a few changes.
+
+Open a third terminal screen and go to the `geth-poa-tutorial` directory. Type in this familiar command:
+
+```
+cd node2
+```
+
+Initialize `geth` with our custom genesis block:
+
+```
+geth init poa-gensis.json
+```
+
+Actually start the Ethereum protocol by entering the slightly-different-but-still-long command below (available locally in the `node2` directory under `geth-start-local.txt`):
+
+**NOTE: THE COMMAND BELOW LOOKS SIMILAR TO NODE 1 BUT IT IS DIFFERENT! YOU MUST COPY AND PASTE THE COMMAND BELOW FOR NODE 2**
+
+```
+geth --datadir ./ --syncmode 'full' --port 30312 --rpc --rpcaddr 'localhost' --rpcport 8503 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock 0aa72454f07c71f5d7c3250787242b98c678900b --password password.txt
+```
+
+Again, you should see the node activity begin. You should also see more activity on the bootnode screen, this time registering requests from Node 1 AND Node 2:
+
+![Node 2 booting up](/images/screen-layout-4.png)
+
+_NOTE: You do not see any mining activity from Node 2 because Node 2 is **not** a valid signer node. You can run it as a miner, but any blocks it submits, even valid ones, will be rejected from the network._
+
 ## Launching Node 3
+
+Open a fourth terminal, and you know the routine by now:
+
+```
+cd node3
+```
+
+Initialize `geth` with our custom genesis block:
+
+```
+geth init poa-gensis.json
+```
+
+Copy and paste this **UNIQUE NODE 3 COMMAND** to actually start the protocol:
+
+```
+geth --datadir ./ --syncmode 'full' --port 30313 --rpc --rpcaddr 'localhost' --rpcport 8504 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock 3231ce5d7f335ee0f3eb21505311b2a692b9fde1 --password password.txt
+
+```
+
+If all goes well, `geth` will boot up and a new node pop up in the bootnode window:
+
+![Node 3 booting up](/images/screen-layout-5.png)
+
 
 Transactions
 ============
 
 ## Opening `geth` REPL console
 
+An Ethereum client creates an endpoint to connect with whatever blockchain its running. `geth` provides a [Javascript-based, REPL command-line interface](https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console) to connect and interact with that endpoint. **We can connect to that console and interact on our newly-created PoA blockchain.**
+
+In the terminal window for Node 2, I open a new tab within the window using `command + T`. In that window, I navigate back to `geth-poa-tutorial/node2` and type the following command:
+
+```
+geth attach geth.ipc
+```
+
+If successful, you will see the Javascript Runtime start with a REPL console line:
+
+![Node 2 REPL booting up](/images/transactions-1.png)
+
+
+Test to make sure you're connected to the network by running a few commands:
+
+```
+admin.peers
+```
+
+Will deliver a list of known peers (should be two, and the IDs should correspond with the traffic you see on your bootnode console). Here's what mine looked like:
+
+![Node 2 locating peers](/images/transactions-2.png)
+
+Here are some other commands to help you get your bearings:
+
+```
+net.version
+```
+
+Should return our custom network ID of `1515`
+
+```
+eth.blockNumber
+```
+
+Should return the latest block mined by Node 1
+
 ## Locating account names
+
+
 
 ## Constructing and Sending Transactions
 
