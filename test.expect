@@ -1,0 +1,60 @@
+## this script uses `expect` to manage the interactivity
+## of running puppeth to create the genesis block
+##
+## there's an issue of interoperability between bash and
+## expect (which uses tcl syntax) I've had to grapple with
+## 
+## hacked something together but can definitely be better:
+## issue: find a way to pass in an array from bash into `expect`
+
+
+## set test_account { {'BB9bc244D798123fDe783fCc1C72d3Bb8C189413'} {'795ac833df259150315a9126c2fcce36096b1548'} {'4fed1fc4144c223ae3c1553be203cdfcbd38c581'} }
+
+## Take the number of incoming arguments
+
+set num_accounts [lindex $argv 0]
+
+## Create an empty list
+set account_list {}
+
+## Create a loop on the range of that number
+## and pipe in the number of accounts into that list using lappend and lindex
+
+set count 1
+
+set sealer [lindex $argv 1]
+
+while { $count <= $num_accounts } {
+    
+    lappend account_list [lindex $argv $count];
+    set count [expr $count+1];
+}
+
+
+puts $account_list
+
+spawn puppeth
+expect "please)"
+send "name30\r"
+expect "stats)"
+send "2\r"
+expect "clique)"
+send "2\r"
+expect "15)"
+send "5\r"
+expect "one)"
+send "BB9bc244D798123fDe783fCc1C72d3Bb8C189413\r"
+expect "0x"
+send "\r"
+expect "one)"
+send "BB9bc244D798123fDe783fCc1C72d3Bb8C189413\r"
+expect "0x"
+send "\r"
+expect "random)"
+send "1515\r"
+expect "stats)"
+send "2\r"
+sleep .5
+send "2\r"
+sleep .5
+send "poa-test-genesis.json\r"

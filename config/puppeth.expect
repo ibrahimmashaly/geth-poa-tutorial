@@ -1,0 +1,73 @@
+## this script uses `expect` to manage the interactivity
+## of running puppeth to create the genesis block
+##
+## there's an issue of interoperability between bash and
+## expect (which uses tcl syntax) I've had to grapple with
+## 
+## hacked something together but can definitely be better:
+## issue: find a way to pass in an array from bash into `expect`
+
+set num_accounts [lindex $argv 0]
+
+
+
+## Generate random id for network
+set network_name [clock seconds]
+
+## Create an empty list
+set account_list {}
+
+## Create a loop on the range of that number
+## and pipe in the number of accounts into that list using lappend and lindex
+set count 1
+set sealer [lindex $argv 1]
+
+
+while { $count <= $num_accounts } {
+    lappend account_list [lindex $argv $count];
+    set count [expr $count+1];
+}
+
+set timeout 3
+
+## Start puppeth and configure PoA genesis block
+## with newly configured accounts
+
+spawn puppeth
+expect "please)"
+send "$network_name\r"
+expect "stats)"
+send "2\r"
+expect "clique)"
+send "2\r"
+expect "15)"
+send "5\r"
+expect "one)"
+#foreach x $account_list {
+#    send "$x\r"
+#    sleep 0.5
+#}
+## For local nodes, just one sealer:
+send "$sealer\r"
+sleep 0.5
+expect "0x"
+send "\r"
+expect "one)"
+foreach x $account_list {
+    send "$x\r"
+    sleep 0.5
+}
+expect "0x"
+send "\r"
+expect "random)"
+send "1515\r"
+sleep 0.2
+expect "stats)"
+send "2\r";
+sleep 0.2
+expect "1."
+send "2\r"
+expect ".json)"
+send "poa-genesis.json\r"
+sleep 3
+exit
