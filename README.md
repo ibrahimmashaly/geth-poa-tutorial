@@ -38,15 +38,15 @@ If you would like to create a new series of accounts, you'll need to install the
 
 Clique
 ============
-`geth` now comes with a native Proof-of-Authority protocol called `Clique`. It creates a genesis block detailing the important specifications of a Proof-of-Authority network. These include:
+`geth` now comes with a native Proof-of-Authority protocol called `Clique`. **It creates a genesis block detailing the important specifications of a Proof-of-Authority network.** These include:
 
-* Who are the valid signers of blocks in this network?
-* Which accounts are pre-funded in this network?
-* How often will a block be broadcast by valid signers?
+* **Who are the valid signers of blocks in this network?**
+* **Which accounts are pre-funded in this network?**
+* **How often will a block be broadcast by valid signers?**
 
-Clique has an important security feature. Any signer can only produce a certain number of consecutive blocks. That number is contingent on the number of total number of signers encoded in the genesis block. The equation for that number is `CONSECUTIVE_BLOCK_LIMIT = (NUMBER_OF_TOTAL_SIGNERS / 2) + 1`
+Clique has an important security feature. **Any signer can only produce a certain number of consecutive blocks.** That number is contingent on the number of total number of signers encoded in the genesis block. The equation for that number is `CONSECUTIVE_BLOCK_LIMIT = (NUMBER_OF_TOTAL_SIGNERS / 2) + 1`
 
-For example, if there are four nodes designated as signers in the genesis block, one of those signers can only broadcast `(4 / 2) + 1 = 3` blocks before the network will refuse any more blocks confirmed by that node. Only until another one of the four designated signers confirms a block can the original node resume submitting.
+For example, if there are four nodes designated as signers in the genesis block, one of those signers can only broadcast `(4 / 2) + 1 = 3` blocks before the network will refuse any more blocks confirmed by that node. **Only until _another_ one of the four designated signers confirms a block can the original node resume submitting.**
 
 This creates a mild safeguard against a rogue node overtaking a network and maliciously altering the network state. It also, however, can freeze your network if not enough valid signers are online.
 
@@ -58,7 +58,7 @@ _For more information about Clique, please read [this Github issue from Péter S
 Configuring Clique via Puppeth
 ============
 
-`geth` includes the handy module `puppeth` for creating custom genesis blocks. We have scripted that process here but will walk through what `puppeth` is doing under-the-hood.
+`geth` includes the handy module `puppeth` for **creating custom genesis blocks.** We have scripted that process here but will walk through what `puppeth` is doing under-the-hood.
 
 [(Click here to skip ahead)](#starting-the-network)
 
@@ -66,7 +66,7 @@ Configuring Clique via Puppeth
 
 ![Network-Name](/images/puppeth-1.png)
 
-For local caching purposes, `puppeth` asks you for a network name. If it detects this network has been used before, it will pull the network information it has previously stored.
+For local caching purposes, `puppeth` asks you for a network name. **If it detects this network has been used before, it will pull the network information it has previously stored.**
 
 Be sure not to use any spaces or hyphens!
 
@@ -75,31 +75,33 @@ Be sure not to use any spaces or hyphens!
 
 ![New-Genesis](/images/puppeth-2.png)
 
-We're getting a new genesis block started, so we're going to select `2`
+We're getting a new genesis block started, so we're going to type `2` and hit enter.
 
 ### Clique Consensus Mechanism
 
 ![Consensus](/images/puppeth-3.png)
 
-Ethereum Mainnet currently runs on [Proof-of-Work consensus.](https://cointelegraph.com/explained/proof-of-work-explained) That's an awesome consensus mechanism for large networks sprawling the globle in a trustless manner, but for our small, down-home network, we're going to choose Clique, [a Proof-of-Authority consensus mechanism.](https://en.wikipedia.org/wiki/Proof-of-authority)
+Ethereum Mainnet currently runs on **[Proof-of-Work consensus.](https://cointelegraph.com/explained/proof-of-work-explained)** That's an awesome consensus mechanism for large networks sprawling the globle in a trustless manner, but for our small, down-home network, we're going to choose **Clique, [a Proof-of-Authority] consensus mechanism.(https://en.wikipedia.org/wiki/Proof-of-authority)**
+
 
 ### Block Time
 
 ![Block Time](/images/puppeth-4.png)
 
-In blockchain networks, the block time is considered the "network heartbeat" -- how often a confirmed block containing the latest confirmed transactions is broadcast out to the network.
+In blockchain networks, the block time is considered the **"network heartbeat"** — how often a confirmed block containing the latest confirmed transactions is broadcast out to the network.
 
-In Proof-of-Work, this time is moderated by a complex algorithm which has a target network time (~10m for Bitcoin, ~14s for Ethereum) and adjusts variables according to the current capacity of miners on the network.
+In **Proof-of-Work** on Ethereum and Bitcoin, this time is moderated by a complex algorithm which has a target network time (~10m for Bitcoin, ~14s for Ethereum). It adjusts variables according to the current capacity of miners on the network.
 
-In Proof-of-Authority, we don't need that complicated algorithm but we do need a set time to run an orderly network. Since Ethereum's block time is 12-14 seconds, we'll put our network's block time at 7s. 
+In **Proof-of-Authority,** we don't need that complicated algorithm but we do need a set time to run an orderly network. Since Ethereum's block time is 12-14 seconds, we'll put our network's block time at 7s. 
 
-Proof-of-Authority networks can decrease their block time and therefore increase their transaction throughput (the number of transactions processed per second). This is a desirable goal for certain blockchain use cases.
+Proof-of-Authority networks can decrease their block time and therefore **increase their transaction throughput** (the number of transactions processed per second). This is a desirable goal for certain blockchain use cases.
+
 
 ### Sealer Nodes
 
 ![Sealer Nodes](/images/puppeth-5.png)
 
-As discussed above, Proof-of-Authority networks allow only certain nodes, called "sealers" to confirm blocks in the network. Furthermore, the Clique consensus protocol only allows each sealer to confirm a certain number of consecutive blocks. For the sake of demonstrating Proof-of-Authority networks, we'll just put one here for simplicity's sake.
+As discussed above, Proof-of-Authority networks allow only certain nodes, called **"sealers"** to confirm blocks in the network. Furthermore, the Clique consensus protocol **only allows each sealer to confirm a certain number of consecutive blocks.** For the sake of demonstrating Proof-of-Authority networks, we'll just put one here for simplicity's sake.
 
 _Note: The `0x` prefix help program parsers know whatever follows it as a hexadecimal-encoded value. Read more [here](https://stackoverflow.com/questions/2670639/why-are-hexadecimal-numbers-prefixed-with-0x)_
 
@@ -107,7 +109,7 @@ _Note: The `0x` prefix help program parsers know whatever follows it as a hexade
 
 ![Pre-Funded Nodes](/images/puppeth-6.png)
 
-Cryptocurrency units can be created one of two ways. First, someone can mine new blocks for a network and be rewarded in that cryptocurrency. Second, the creator of a network can designate certain accounts to have a certain balance in the genesis block (also known as a "pre-mine").
+**Cryptocurrency units can be created one of two ways.** First, someone can mine new blocks for a network and be rewarded in that cryptocurrency. Second, the creator of a network can designate certain accounts to have a certain balance in the genesis block (also known as a "pre-mine").
 
 Here, we are designating which nodes will be "pre-funded" in the genesis block. What  generous folks we are!
 
@@ -115,7 +117,7 @@ Here, we are designating which nodes will be "pre-funded" in the genesis block. 
 
 ![Network ID](/images/puppeth-7.png)
 
-Nodes on a network need to determine which nodes they can connect with. With a custom-generated genesis block, we provide a `Network ID` so nodes can easily identify each other.
+**Nodes on a network need to determine which nodes they can connect with.** With a custom-generated genesis block, we provide a `Network ID` so nodes can easily identify each other.
 
 `1515` we are choosing randomly, you can pick any number you'd like.
 
@@ -125,7 +127,7 @@ After we enter `Network ID`, `puppeth` takes all the information we have provide
 
 ![Exporting Genesis Block](/images/puppeth-8.png)
 
-Last, we need to export the genesis block `puppeth` has created for us. Provide a filename here (and be sure to add `.json` to the end!) or simply hit enter to accept the detault name.
+Last, we need to export the genesis block `puppeth` has created for us. **Provide a filename here (and be sure to add `.json` to the end!) or simply hit enter to accept the detault name.**
 
 Starting the Network
 ============

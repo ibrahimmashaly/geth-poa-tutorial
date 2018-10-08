@@ -41,7 +41,7 @@ send "2\r"
 expect "clique)"
 send "2\r"
 expect "15)"
-send "5\r"
+send "7\r"
 expect "one)"
 #foreach x $account_list {
 #    send "$x\r"
