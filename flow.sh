@@ -28,8 +28,8 @@ setup_geth_account () {
         short_name=${long_name:(-40)}
         echo "Created account: $short_name"
 
-        ACCOUNTS+=($short_name)
-        echo "Added $ACCOUNTS[$1] to ACCOUNTS"
+        ACCOUNTS+=("$node_name: $short_name")
+        echo "Added $short_name to ACCOUNTS"
         done
 }
 

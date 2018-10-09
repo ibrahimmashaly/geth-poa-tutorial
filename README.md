@@ -297,25 +297,52 @@ Will deliver a list of known peers (should be two, and the IDs should correspond
 
 ![Node 2 locating peers](/images/transactions-2.png)
 
-Here are some other commands to help you get your bearings:
+**Here are some other commands to help you get your bearings:**
 
 ```
 net.version
 ```
 
-Should return our custom network ID of `1515`
+**Should return our custom network ID of `1515`**
 
 ```
 eth.blockNumber
 ```
 
-Should return the latest block mined by Node 1
+**Should return the latest block mined by Node 1**
+
+```
+eth.coinbase
+```
+
+Should return the Ethereum address for the node you are currently operating from
 
 ## Locating account names
 
+Open the document labeled `poa-accounts.txt` to see the Ethereum addresses for **Node 1, Node 2 and Node 3.**
+
+**All these windows can get confusing!** If you're unsure about which node's console you're in, simple enter `eth.coinbase` into the `geth console` tab to see the Ethereum address.
 
 
 ## Constructing and Sending Transactions
+
+Navigate to the `geth console` tab on one of your node terminal windows. 
+
+The command below is a generic one to send ether (the cryptocurrency unit for Ethereum networks) from one account to another account. Substitute `'RECEIPIENT_NODE_ADDRESS'` with the forty-character address (surrounded by quotes `''` but without the `0x` prefix) of where you'd like to send it (For example, if you're Node 1, that will be Node 2 or Node 3).
+
+```
+eth.sendTransaction({'from':eth.coinbase, 'to':'RECEIPIENT_NODE_ADDRESS', 'value':web3.toWei(13.5, 'ether')})
+```
+
+If it's successful, the console will print a long string, which is your `Receipt Transaction Hash`. It's like your transaction ID that you can use to look up your transaction, and its status, later.
+
+To see the changes caused by the transaction, enter this command into all three nodes' `geth console`:
+
+```
+web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+```
+
+The balances should be different by a factor of 13.5 for the two nodes involved in the transaction and the same as the pre-fund for the node not included.
 
 Cleaning up the Network
 ============
