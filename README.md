@@ -5,7 +5,7 @@ _This tutorial is based on [this Hackernoon Tutorial](https://hackernoon.com/set
 
 [Proof-of-Authority](https://wiki.parity.io/Proof-of-Authority-Chains) is a consensus mechanism used as an alternative to Proof of Work. Where Proof of Work relies on miners expending computing power in a race to create the next block and secure the blockchain, Proof of Authority designates this role to a number of "authority" nodes. In a typical Proof of Authority ruled network, one node is designated as a producer of blocks and the rest vote on the legitimacy of that block.
 
-Proof-of-Authority (PoA) is an easier way to run a blockchain with semi-trusted participants, such as a consortium blockchain. Designated signers create the possibility of a small, secure blockchain not worried about [51% attacks endemic to Proof-of-Work secured blockchains.](https://www.investopedia.com/terms/1/51-attack.asp) PoA also comes with transaction finality, so a new node syncing to the PoA network only has to obtain the latest block to know the state of the network. However, PoA-backed network have their own series of security issues (which are outside the scope of this tutorial).
+Proof-of-Authority (PoA) is an easier way to run a blockchain with semi-trusted participants, such as a consortium blockchain. Designated signers create the possibility of a small, secure blockchain not worried about [51% attacks endemic to Proof-of-Work secured blockchains.](https://en.bitcoin.it/wiki/Majority_attack) PoA also comes with transaction finality, so a new node syncing to the PoA network only has to obtain the latest block to know the state of the network. However, PoA-backed network have their own series of security issues (which are outside the scope of this tutorial).
 
 **Note: It is not suggested that you use this tutorial PoA network created for anything other than educational purposes. For secure PoA networks, see [Further Reading](#further-reading) section below**
 
@@ -167,7 +167,7 @@ cd node1
 Then, please enter this command:
 
 ```
-geth init poa-genesis.json
+geth --datadir ./ init poa-genesis.json
 ```
 
 You should see the following:
@@ -226,7 +226,7 @@ cd node2
 Initialize `geth` with our custom genesis block:
 
 ```
-geth init poa-gensis.json
+geth --datadir ./ init poa-genesis.json
 ```
 
 Actually start the Ethereum protocol by entering the slightly-different-but-still-long command below (available locally in the `node2` directory under `geth-start-local.txt`):
@@ -254,7 +254,7 @@ cd node3
 Initialize `geth` with our custom genesis block:
 
 ```
-geth init poa-gensis.json
+geth --datadir ./ init poa-genesis.json
 ```
 
 Copy and paste this **UNIQUE NODE 3 COMMAND** to actually start the protocol:
