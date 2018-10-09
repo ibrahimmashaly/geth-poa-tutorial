@@ -20,8 +20,23 @@ Table of contents
 <!--ts-->
    * [Project Setup](#project-setup)
    * [Configuring Clique via Puppeth](#configuring-clique-via-puppeth)
+     * [Network Name](#Network-Name)
+     * [Configure New Genesis Block](#Configure-New-Genesis-Block)
+     * [Clique Consensus Mechanism](#Clique-Consensus-Mechanism)
+     * [Block Time](#Block-Time)
+     * [Sealer Nodes](#Sealer-Nodes)
+     * [Pre-Funded Accounts](#Pre-Funded-Accounts)
+     * [Network ID](#Network-ID)
+     * [Exporting Genesis Block](#Exporting-Genesis-Block)
    * [Starting the Network](#starting-the-network)
+     * [Launching the Bootnode](#Launching-the-Bootnode)
+     * [Launching Node 1](#Launching-Node-1)
+     * [Launching Node 2](#Launching-Node-2)
+     * [Launching Node 3](#Launching-Node-3)
    * [Transactions](#transactions)
+     * [Opening `geth` REPL console](#Opening-`geth`-REPL-console)
+     * [Locating account names](#Locating-account-names)
+     * [Constructing and Sending Transactions](#Constructing-and-Sending-Transactions)
    * [Cleaning up the Network](#cleaning-up-the-network)
    * [Further-Reading](#further-reading)
 <!--te-->
@@ -37,6 +52,7 @@ Please fork this repo and download it to your local machine. Use the terminal to
 
 If you would like to create a new series of accounts, you'll need to install the `expect` package , [Homebrew (Mac) installation instructions are here](http://brewformulas.org/Expect)
 
+[Back to Top](#table-of-contents)
 
 Clique
 ============
@@ -56,6 +72,7 @@ This creates a mild safeguard against a rogue node overtaking a network and mali
 
 _For more information about Clique, please read [this Github issue from Péter Szilágyi explaining its release.](https://github.com/ethereum/EIPs/issues/225)_
 
+[Back to Top](#table-of-contents)
 
 Configuring Clique via Puppeth
 ============
@@ -72,12 +89,15 @@ For local caching purposes, `puppeth` asks you for a network name. **If it detec
 
 Be sure not to use any spaces or hyphens!
 
+[Top](#table-of-contents)
 
-### Configure New Genesis
+### Configure New Genesis Block
 
 ![New-Genesis](/images/puppeth-2.png)
 
 We're getting a new genesis block started, so we're going to type `2` and hit enter.
+
+[Top](#table-of-contents)
 
 ### Clique Consensus Mechanism
 
@@ -85,6 +105,7 @@ We're getting a new genesis block started, so we're going to type `2` and hit en
 
 Ethereum Mainnet currently runs on **[Proof-of-Work consensus.](https://cointelegraph.com/explained/proof-of-work-explained)** That's an awesome consensus mechanism for large networks sprawling the globle in a trustless manner, but for our small, down-home network, we're going to choose **Clique, [a Proof-of-Authority](https://en.wikipedia.org/wiki/Proof-of-authority) consensus mechanism.**
 
+[Top](#table-of-contents)
 
 ### Block Time
 
@@ -98,6 +119,7 @@ In **Proof-of-Authority,** we don't need that complicated algorithm but we do ne
 
 Proof-of-Authority networks can decrease their block time and therefore **increase their transaction throughput** (the number of transactions processed per second). This is a desirable goal for certain blockchain use cases.
 
+[Top](#table-of-contents)
 
 ### Sealer Nodes
 
@@ -105,15 +127,19 @@ Proof-of-Authority networks can decrease their block time and therefore **increa
 
 As discussed above, Proof-of-Authority networks allow only certain nodes, called **"sealers"** to confirm blocks in the network. Furthermore, the Clique consensus protocol **only allows each sealer to confirm a certain number of consecutive blocks.** For the sake of demonstrating Proof-of-Authority networks, we'll just put one here for simplicity's sake.
 
-_Note: The `0x` prefix help program parsers know whatever follows it as a hexadecimal-encoded value. Read more [here](https://stackoverflow.com/questions/2670639/why-are-hexadecimal-numbers-prefixed-with-0x)_
+_Note: The `0x` prefix hexadecimal-encoded values to help program parsers. Read more [here](https://stackoverflow.com/questions/2670639/why-are-hexadecimal-numbers-prefixed-with-0x)_
 
-### Pre-Funded Nodes
+[Top](#table-of-contents)
+
+### Pre-Funded Accounts
 
 ![Pre-Funded Nodes](/images/puppeth-6.png)
 
 **Cryptocurrency units can be created one of two ways.** First, **someone can mine new blocks for a network** and be rewarded in that cryptocurrency. Second, **the creator of a network can designate certain accounts to have a certain balance** in the genesis block (also known as a "pre-mine").
 
-Here, we are designating which nodes will be "pre-funded" in the genesis block. What generous folks we are! 
+Here, we are designating which accounts will be "pre-funded" in the genesis block. What generous folks we are! 
+
+[Top](#table-of-contents)
 
 ### Network ID
 
@@ -125,11 +151,15 @@ Here, we are designating which nodes will be "pre-funded" in the genesis block. 
 
 After we enter `Network ID`, `puppeth` takes all the information we have provided it and creates a custom genesis block for our Proof-of-Authority network.
 
+[Top](#table-of-contents)
+
 ### Exporting Genesis Block
 
 ![Exporting Genesis Block](/images/puppeth-8.png)
 
 Last, we need to export the genesis block `puppeth` has created for us. **Provide a filename here (and be sure to add `.json` to the end!) or simply hit enter to accept the detault name.**
+
+[Top](#table-of-contents)
 
 Starting the Network
 ============
@@ -151,6 +181,8 @@ Note: The bootnode acts more as a network router or hub. It is a central point t
 **_I would recommend enlarging the window and placing it in the upper corner of the window, as shown below:_**
 
 ![Bootnode](/images/screen-layout-1.png)
+
+[Top](#table-of-contents)
 
 ## Launching Node 1
 
@@ -213,6 +245,8 @@ Here's what you should see:
 
 ![Node 1 booting up](/images/screen-layout-3.png)
 
+[Top](#table-of-contents)
+
 ## Launching Node 2
 
 We're going to do the same thing with Node 2, with a few changes.
@@ -243,6 +277,8 @@ Again, you should see the node activity begin. You should also see more activity
 
 _NOTE: You do not see any mining activity from Node 2 because Node 2 is **not** a valid signer node. You can run it as a miner, but any blocks it submits, even valid ones, will be rejected from the network._
 
+[Top](#table-of-contents)
+
 ## Launching Node 3
 
 Open a fourth terminal, and you know the routine by now:
@@ -268,6 +304,7 @@ If all goes well, `geth` will boot up and a new node pop up in the bootnode wind
 
 ![Node 3 booting up](/images/screen-layout-5.png)
 
+[Top](#table-of-contents)
 
 Transactions
 ============
@@ -315,7 +352,9 @@ eth.blockNumber
 eth.coinbase
 ```
 
-Should return the Ethereum address for the node you are currently operating from
+Should return the Ethereum address for the node you are currently operating
+
+[Top](#table-of-contents)
 
 ## Locating account names
 
@@ -323,6 +362,7 @@ Open the document labeled `poa-accounts.txt` to see the Ethereum addresses for *
 
 **All these windows can get confusing!** If you're unsure about which node's console you're in, simple enter `eth.coinbase` into the `geth console` tab to see the Ethereum address.
 
+[Top](#table-of-contents)
 
 ## Constructing and Sending Transactions
 
@@ -343,6 +383,8 @@ web3.fromWei(eth.getBalance(eth.coinbase), "ether")
 ```
 
 The balances should be different by a factor of 13.5 for the two nodes involved in the transaction and the same as the pre-fund for the node not included.
+
+[Top](#table-of-contents)
 
 Cleaning up the Network
 ============
@@ -366,3 +408,4 @@ For more resources, please see the links below:
 
 * [Cliquebait Repo,](https://github.com/f-o-a-m/cliquebait) from [FOAM](https://foam.space/)
 
+[Top](#table-of-contents)
