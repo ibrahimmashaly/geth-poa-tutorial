@@ -3,7 +3,7 @@ _This tutorial is based on [this Hackernoon Tutorial](https://hackernoon.com/set
 # What is Proof of Authority (PoA)? 
 
 
-[Proof-of-Authority](https://wiki.parity.io/Proof-of-Authority-Chains) is a consensus mechanism used as an alternative to Proof of Work. Where Proof of Work relies on miners expending computing power in a race to create the next block and secure the blockchain, Proof of Authority designates this role to a number of "authority" nodes. In a typical Proof of Authority ruled network, one node is designated as a producer of blocks and the rest vote on the legitimacy of that block.
+[Proof-of-Authority](https://wiki.parity.io/Proof-of-Authority-Chains) is a consensus mechanism used as an alternative to Proof of Work. Where Proof of Work relies on miners expending computing power in a race to create the next block and secure the blockchain, Proof of Authority designates this role to a number of "authority" nodes. In a typical Proof of Authority network, one node or a series of nodes act as validators for the entire network.
 
 Proof-of-Authority (PoA) is an easier way to run a blockchain with semi-trusted participants, such as a consortium blockchain. Designated signers create the possibility of a small, secure blockchain not worried about [51% attacks endemic to Proof-of-Work secured blockchains.](https://en.bitcoin.it/wiki/Majority_attack) PoA also comes with transaction finality, so a new node syncing to the PoA network only has to obtain the latest block to know the state of the network. However, PoA-backed network have their own series of security issues (which are outside the scope of this tutorial).
 
