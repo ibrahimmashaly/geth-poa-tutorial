@@ -167,7 +167,7 @@ cd node1
 Then, please enter this command:
 
 ```
-geth init poa-genesis.json
+geth --datadir ./ init poa-genesis.json
 ```
 
 You should see the following:
@@ -226,7 +226,7 @@ cd node2
 Initialize `geth` with our custom genesis block:
 
 ```
-geth init poa-gensis.json
+geth --datadir ./ init poa-genesis.json
 ```
 
 Actually start the Ethereum protocol by entering the slightly-different-but-still-long command below (available locally in the `node2` directory under `geth-start-local.txt`):
@@ -254,7 +254,7 @@ cd node3
 Initialize `geth` with our custom genesis block:
 
 ```
-geth init poa-gensis.json
+geth --datadir ./ init poa-genesis.json
 ```
 
 Copy and paste this **UNIQUE NODE 3 COMMAND** to actually start the protocol:
