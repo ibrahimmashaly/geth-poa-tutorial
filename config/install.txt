@@ -1,2 +1,0 @@
-geth
-expect (via homebrew, yum, apt-get)
