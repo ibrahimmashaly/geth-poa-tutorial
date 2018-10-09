@@ -349,11 +349,20 @@ Cleaning up the Network
 
 Further Reading
 ============
-https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8
-https://wiki.parity.io/Proof-of-Authority-Chains
-https://wiki.parity.io/Demo-PoA-tutorial.html
-https://medium.com/@collin.cusce/using-puppeth-to-manually-create-an-ethereum-proof-of-authority-clique-network-on-aws-ae0d7c906cce
 
-https://wiki.parity.io/Proof-of-Authority-Chains
-https://github.com/ethereum/EIPs/issues/225
-https://github.com/f-o-a-m/cliquebait
+This tutorial aimed to explain the basics of Proof-of-Authority, show you how to start your own PoA private network and conduct transactions on that network. We hope you enjoyed it!
+
+For more resources, please see the links below:
+
+* This tutorial is based on this post — ["Setup Your Own Private Proof of Authority Ethereum Network with Geth"](https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8)
+
+* ["Proof of Authority Chains,"](https://wiki.parity.io/Proof-of-Authority-Chains) Parity Technologies 
+
+* ["Proof-of-Authority Tutorial,"](https://wiki.parity.io/Demo-PoA-tutorial.html) Parity Technologies
+
+* ["Using Puppeth to Manually Create an Ethereum Proof-of-Authority Clique Network using AWS,"](https://medium.com/@collin.cusce/using-puppeth-to-manually-create-an-ethereum-proof-of-authority-clique-network-on-aws-ae0d7c906cce) Collin Cusce
+
+* [Clique PoA Protocol Details](https://github.com/ethereum/EIPs/issues/225), Péter Szilágyi & Ethereum Foundation
+
+* [Cliquebait Repo,](https://github.com/f-o-a-m/cliquebait) from [FOAM](https://foam.space/)
+
