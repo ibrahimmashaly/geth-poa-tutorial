@@ -37,7 +37,6 @@ Table of contents
      * [Opening `geth` REPL console](#opening-`geth`-repl-console)
      * [Locating account names](#locating-account-names)
      * [Constructing and Sending Transactions](#constructing-and-sending-transactions)
-   * [Cleaning up the Network](#cleaning-up-the-network)
    * [Further-Reading](#further-reading)
 <!--te-->
 
@@ -49,8 +48,6 @@ We are assuming you have already downloaded the Go-Ethereum client `geth`. If yo
 _Note: This tutorial was created using `geth 1.8.14`_
 
 Please fork this repo and download it to your local machine. Use the terminal to `cd` into the directory `geth-poa-tutorial`.
-
-If you would like to create a new series of accounts, you'll need to install the `expect` package , [Homebrew (Mac) installation instructions are here](http://brewformulas.org/Expect)
 
 [Back to Top](#table-of-contents)
 
@@ -385,9 +382,6 @@ web3.fromWei(eth.getBalance(eth.coinbase), "ether")
 The balances should be different by a factor of 13.5 for the two nodes involved in the transaction and the same as the pre-fund for the node not included.
 
 [Top](#table-of-contents)
-
-Cleaning up the Network
-============
 
 Further Reading
 ============
