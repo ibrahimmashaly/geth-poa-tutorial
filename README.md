@@ -368,7 +368,7 @@ Navigate to the `geth console` tab on one of your node terminal windows.
 The command below is a generic one to send ether (the cryptocurrency unit for Ethereum networks) from one account to another account. Substitute `'RECEIPIENT_NODE_ADDRESS'` with the forty-character address (surrounded by quotes `''` but without the `0x` prefix) of where you'd like to send it (For example, if you're Node 1, that will be Node 2 or Node 3).
 
 ```
-eth.sendTransaction({'from':eth.coinbase, 'to':'RECEIPIENT_NODE_ADDRESS', 'value':web3.toWei(13.5, 'ether')})
+eth.sendTransaction({'from':eth.coinbase, 'to':'0xf59a61caf69f7216b83f063c2b9b712b82e50e84', 'value':web3.toWei(13.5, 'ether')})
 ```
 
 If it's successful, the console will print a long string, which is your `Receipt Transaction Hash`. It's like your transaction ID that you can use to look up your transaction, and its status, later.
