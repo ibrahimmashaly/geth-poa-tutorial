@@ -1,0 +1,71 @@
+Ubuntu commands
+
+sudo apt-get install git
+mkdir poatutorial
+cd poatutorial
+git clone https://github.com/cooganb/geth-poa-tutorial.git
+
+
+
+
+
+
+
+Step 1: Clone GitHub repo
+sudo apt install git
+git clone https://github.com/cooganb/geth-poa-tutorial.git
+
+Step 2: Download geth - Ubuntu
+sudo apt-get install software-properties-common
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update
+sudo apt-get install ethereum
+geth version
+
+brew tap ethereum/ethereum
+brew install ethereum
+
+Step 3: Configure Clique via Puppeth
+puppeth
+
+Sealer Nodes
+node 1: 1a4b71b48498237d2817be049b4bc43fad971bca
+node 2: f59a61caf69f7216b83f063c2b9b712b82e50e84
+node 3: 6dcccc3ab843cf7973986870fbffe55fca71acbd
+
+
+Step 4: Start the network - boot node
+bash ./bootnode/bootnode-start-local.sh
+
+
+Step 4: Start the network - launching node 1
+cd node1
+geth --datadir ./ init poa-genesis.json
+
+
+geth --datadir ./ --syncmode 'full' --port 30311 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8502 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock 1a4b71b48498237d2817be049b4bc43fad971bca --password password.txt --mine
+
+
+geth --datadir ./ --syncmode 'full' --port 30312 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8503 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock f59a61caf69f7216b83f063c2b9b712b82e50e84 --password password.txt --mine
+
+geth --datadir ./ --syncmode 'full' --port 30313 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8504 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock 6dcccc3ab843cf7973986870fbffe55fca71acbd --password password.txt --mine
+
+
+Connect to geth console
+geth attach geth.ipc 
+or
+geth attach "http://0.0.0.0:8502"
+
+
+Run basic commands
+admin.peers
+net.version
+eth.blockNumber
+eth.coinbase
+
+
+Constructing and Sending Transactions
+eth.sendTransaction({'from':eth.coinbase, 'to':'0xf59a61caf69f7216b83f063c2b9b712b82e50e84', 'value':web3.toWei(13.5, 'ether')})
+
+web3.fromWei(eth.getBalance(eth.coinbase), "ether") 
+
