@@ -1,18 +1,12 @@
 Ubuntu commands
 
 sudo apt-get install git
-mkdir poatutorial
-cd poatutorial
-git clone https://github.com/cooganb/geth-poa-tutorial.git
-
-
-
-
+mkdir PoAtutorial
+cd PoAtutorial
 
 
 
 Step 1: Clone GitHub repo
-sudo apt install git
 git clone https://github.com/cooganb/geth-poa-tutorial.git
 
 Step 2: Download geth - Ubuntu
