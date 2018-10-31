@@ -37,6 +37,7 @@ Table of contents
      * [Opening `geth` REPL console](#opening-`geth`-repl-console)
      * [Locating account names](#locating-account-names)
      * [Constructing and Sending Transactions](#constructing-and-sending-transactions)
+   * [Adding/Removing Signers From the Network](#adding/removing-signers-from-the-network)
    * [Further-Reading](#further-reading)
 <!--te-->
 
@@ -303,6 +304,7 @@ If all goes well, `geth` will boot up and a new node pop up in the bootnode wind
 
 [Top](#table-of-contents)
 
+
 Transactions
 ============
 
@@ -380,6 +382,19 @@ web3.fromWei(eth.getBalance(eth.coinbase), "ether")
 ```
 
 The balances should be different by a factor of 13.5 for the two nodes involved in the transaction and the same as the pre-fund for the node not included.
+
+[Top](#table-of-contents)
+
+Adding/Removing Signers From the Network
+============
+
+[From Stack Overflow:](https://ethereum.stackexchange.com/questions/15541/how-to-add-new-sealer-in-geth-1-6-proof-of-authority)
+
+> The protocol defines a voting mechanism to dynamically add new signers and remove existing ones. In Geth this can be controlled via the clique.propose(address, authorized) method (clique_propose for remote RPC calls).
+> 
+> To authorize a new signer, existing ones can propose it via `clique.propose("0x...", true)`. When more than half the signers proposed it, the authorization comes into effect immediately and the new account can start signing blocks.
+> 
+> Similarly, existing signers can propose deauthorizing existing ones via `clique.propose("0x...", false).` Again if half + 1 signers deauthorize a signer, it is immediately removed from the list and blocks minted by it are rejected from that point onward.
 
 [Top](#table-of-contents)
 
