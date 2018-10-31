@@ -37,7 +37,7 @@ Table of contents
      * [Opening `geth` REPL console](#opening-`geth`-repl-console)
      * [Locating account names](#locating-account-names)
      * [Constructing and Sending Transactions](#constructing-and-sending-transactions)
-   * [Adding/Removing Signers From the Network](#adding/removing-signers-from-the-network)
+   * [Adding & Removing Signers From the Network](#adding-&-removing-signers-from-the-network)
    * [Further-Reading](#further-reading)
 <!--te-->
 
@@ -385,7 +385,7 @@ The balances should be different by a factor of 13.5 for the two nodes involved 
 
 [Top](#table-of-contents)
 
-Adding/Removing Signers From the Network
+Adding & Removing Signers From the Network
 ============
 
 [From Stack Overflow:](https://ethereum.stackexchange.com/questions/15541/how-to-add-new-sealer-in-geth-1-6-proof-of-authority)
