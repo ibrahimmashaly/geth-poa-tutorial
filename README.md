@@ -26,6 +26,7 @@ Table of contents
      * [Block Time](#block-time)
      * [Sealer Nodes](#sealer-nodes)
      * [Pre-Funded Accounts](#pre-funded-accounts)
+     * [Pre-fund-Precompiles](#pre-fund-precompiles)
      * [Network ID](#network-id)
      * [Exporting Genesis Block](#exporting-genesis-block)
    * [Starting the Network](#starting-the-network)
@@ -34,7 +35,7 @@ Table of contents
      * [Launching Node 2](#launching-node-2)
      * [Launching Node 3](#launching-node-3)
    * [Transactions](#transactions)
-     * [Opening `geth` REPL console](#opening-`geth`-repl-console)
+     * [Opening `geth` REPL console](#opening-geth-repl-console)
      * [Locating account names](#locating-account-names)
      * [Constructing and Sending Transactions](#constructing-and-sending-transactions)
    * [Adding or Removing Signers From the Network](#adding-or-removing-signers-from-the-network)
@@ -46,7 +47,7 @@ Project Setup
 
 We are assuming you have already downloaded the Go-Ethereum client `geth`. If you have not, [installation instructions are here.](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
 
-_Note: This tutorial was created using `geth 1.8.14`_
+_Note: This tutorial was created using `geth 1.9.2`_
 
 Please fork this repo and download it to your local machine. Use the terminal to `cd` into the directory `geth-poa-tutorial`.
 
@@ -54,7 +55,7 @@ Please fork this repo and download it to your local machine. Use the terminal to
 
 Clique
 ============
-`geth` now comes with a native Proof-of-Authority protocol called `Clique`. **It creates a genesis block detailing the important specifications of a Proof-of-Authority network.** These include:
+`geth` comes with a native Proof-of-Authority protocol called `Clique`. **It creates a genesis block detailing the important specifications of a Proof-of-Authority network.** These include:
 
 * **Who are the valid signers of blocks in this network?**
 * **Which accounts are pre-funded in this network?**
@@ -85,7 +86,7 @@ Configuring Clique via Puppeth
 
 For local caching purposes, `puppeth` asks you for a network name. **If it detects this network has been used before, it will pull the network information it has previously stored.**
 
-Be sure not to use any spaces or hyphens!
+Be sure not to use any spaces, hyphens or capital letters!
 
 [Top](#table-of-contents)
 
@@ -123,7 +124,9 @@ Proof-of-Authority networks can decrease their block time and therefore **increa
 
 ![Sealer Nodes](/images/puppeth-5.png)
 
-As discussed above, Proof-of-Authority networks allow only certain nodes, called **"sealers"** to confirm blocks in the network. Furthermore, the Clique consensus protocol **only allows each sealer to confirm a certain number of consecutive blocks.** For the sake of demonstrating Proof-of-Authority networks, we'll just put one here for simplicity's sake.
+As discussed above, Proof-of-Authority networks allow only certain nodes, called **"sealers"** to confirm blocks in the network. Furthermore, the Clique consensus protocol **only allows each sealer to confirm a certain number of consecutive blocks.** For the sake of demonstrating Proof-of-Authority networks, we'll just put the one below for simplicity's sake:
+
+`0x1a4b71b48498237d2817be049b4bc43fad971bca`
 
 _Note: The `0x` prefix hexadecimal-encoded values to help program parsers. Read more [here](https://stackoverflow.com/questions/2670639/why-are-hexadecimal-numbers-prefixed-with-0x)_
 
@@ -135,9 +138,15 @@ _Note: The `0x` prefix hexadecimal-encoded values to help program parsers. Read 
 
 **Cryptocurrency units can be created one of two ways.** First, **someone can mine new blocks for a network** and be rewarded in that cryptocurrency. Second, **the creator of a network can designate certain accounts to have a certain balance** in the genesis block (also known as a "pre-mine").
 
-Here, we are designating which accounts will be "pre-funded" in the genesis block. What generous folks we are! 
+Here, we are designating the same account above as "pre-funded" in the genesis block. What generous folks we are! 
 
 [Top](#table-of-contents)
+
+### Pre-Funding Precompiles
+
+![Pre-Funded Precompiles](/images/puppeth-6b.png)
+
+This is an interesting technical point beyond the scope of this tutorial. [See more here if you're interested in why we need to fund precompiles.](https://ethereum.stackexchange.com/questions/68056/puppeth-precompile-addresses) And answer `yes`.
 
 ### Network ID
 
@@ -153,9 +162,17 @@ After we enter `Network ID`, `puppeth` takes all the information we have provide
 
 ### Exporting Genesis Block
 
-![Exporting Genesis Block](/images/puppeth-8.png)
+![Exporting Genesis Block](/images/puppeth-8a.png)
 
-Last, we need to export the genesis block `puppeth` has created for us. **Provide a filename here (and be sure to add `.json` to the end!) or simply hit enter to accept the detault name.**
+Last, we need to export the genesis block `puppeth` has created for us. Select `2` from the current menu (see above)
+
+![Exporting Genesis Block 2](/images/puppeth-8b.png)
+
+Select `2` again (see above)
+
+![Exporting Genesis Block 3](/images/puppeth-8c.png)
+
+Last, simply press enter to have the genesis block saved to the default setting of the current directory. Don't mind the errors you see there -- Aleth and Harmony are two Ethereum clients that don't have support for Clique, the PoA consensus mechanism we picked.
 
 [Top](#table-of-contents)
 
