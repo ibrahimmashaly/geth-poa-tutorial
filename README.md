@@ -26,7 +26,7 @@ Table of contents
      * [Block Time](#block-time)
      * [Sealer Nodes](#sealer-nodes)
      * [Pre-Funded Accounts](#pre-funded-accounts)
-     * [Pre-fund-Precompiles](#pre-fund-precompiles)
+     * [Pre-funded Precompiles](#pre-fund-precompiles)
      * [Network ID](#network-id)
      * [Exporting Genesis Block](#exporting-genesis-block)
    * [Starting the Network](#starting-the-network)
@@ -142,7 +142,7 @@ Here, we are designating the same account above as "pre-funded" in the genesis b
 
 [Top](#table-of-contents)
 
-### Pre-Funding Precompiles
+### Pre-Funded Precompiles
 
 ![Pre-Funded Precompiles](/images/puppeth-6b.png)
 
