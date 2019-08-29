@@ -50,6 +50,10 @@ _Note: This tutorial was created using `geth 1.8.14`_
 
 Please fork this repo and download it to your local machine. Use the terminal to `cd` into the directory `geth-poa-tutorial`.
 
+
+There are two ways to go through this tutorial. The first way uses the network configurations we've setup (no setup required on your end). Instructions for this way are labelled with a green book: &#x1F4D7; . The second way allows the user to setup their own directory and unique node accounts. Instructions for this way are labeled with a red dot: &#x1F534; .
+
+
 [Back to Top](#table-of-contents)
 
 Clique
