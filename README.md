@@ -172,7 +172,7 @@ Select `2` again (see above)
 
 ![Exporting Genesis Block 3](/images/puppeth-8c.png)
 
-Last, simply press enter to have the genesis block saved to the default setting of the current directory. Don't mind the errors you see there -- Aleth and Harmony are two Ethereum clients that don't have support for Clique, the PoA consensus mechanism we picked.
+Last, simply press enter to have the genesis block saved to the default setting of the current directory. Don't mind the errors you see there -- Aleth and Parity are two Ethereum clients that don't have support for Clique, the PoA consensus mechanism we picked.
 
 We copy this file and put it in the directory of the three nodes we'll be launching.
 
