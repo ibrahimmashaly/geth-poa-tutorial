@@ -174,6 +174,8 @@ Select `2` again (see above)
 
 Last, simply press enter to have the genesis block saved to the default setting of the current directory. Don't mind the errors you see there -- Aleth and Harmony are two Ethereum clients that don't have support for Clique, the PoA consensus mechanism we picked.
 
+We copy this file and put it in the directory of the three nodes we'll be launching.
+
 [Top](#table-of-contents)
 
 Starting the Network
@@ -214,7 +216,7 @@ cd node1
 Then, please enter this command:
 
 ```
-geth --datadir ./ init poa-genesis.json
+geth --datadir ./ init poa.json
 ```
 
 You should see the following:
@@ -232,7 +234,7 @@ Successfully wrote genesis state
 Now, we'd like to actually _start_ the Ethereum protocol running on our custom PoA genesis block. To do that, please enter the following command (this is also provided locally in `geth-start-local.txt` located within the `node1` directory):
 
 ```
-geth --datadir ./ --syncmode 'full' --port 30311 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8502 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock 1a4b71b48498237d2817be049b4bc43fad971bca --password password.txt --mine
+geth --datadir ./ --syncmode 'full' --port 30311 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8502 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' --allow-insecure-unlock -unlock 1a4b71b48498237d2817be049b4bc43fad971bca --password password.txt --mine
 ```
 
 If all is successful, you should see two things happen:
@@ -275,7 +277,7 @@ cd node2
 Initialize `geth` with our custom genesis block:
 
 ```
-geth --datadir ./ init poa-genesis.json
+geth --datadir ./ init poa.json
 ```
 
 Actually start the Ethereum protocol by entering the slightly-different-but-still-long command below (available locally in the `node2` directory under `geth-start-local.txt`):
@@ -283,7 +285,7 @@ Actually start the Ethereum protocol by entering the slightly-different-but-stil
 **NOTE: THE COMMAND BELOW LOOKS SIMILAR TO NODE 1 BUT IT IS DIFFERENT! YOU MUST COPY AND PASTE THE COMMAND BELOW FOR NODE 2**
 
 ```
-geth --datadir ./ --syncmode 'full' --port 30312 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8503 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock f59a61caf69f7216b83f063c2b9b712b82e50e84 --password password.txt
+geth --datadir ./ --syncmode 'full' --port 30312 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8503 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' --allow-insecure-unlock -unlock f59a61caf69f7216b83f063c2b9b712b82e50e84 --password password.txt
 ```
 
 Again, you should see the node activity begin. You should also see more activity on the bootnode screen, this time registering requests from Node 1 AND Node 2:
@@ -305,13 +307,13 @@ cd node3
 Initialize `geth` with our custom genesis block:
 
 ```
-geth --datadir ./ init poa-genesis.json
+geth --datadir ./ init poa.json
 ```
 
 Copy and paste this **UNIQUE NODE 3 COMMAND** to actually start the protocol:
 
 ```
-geth --datadir ./ --syncmode 'full' --port 30313 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8504 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' -unlock 6dcccc3ab843cf7973986870fbffe55fca71acbd --password password.txt
+geth --datadir ./ --syncmode 'full' --port 30313 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8504 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' --allow-insecure-unlock -unlock 6dcccc3ab843cf7973986870fbffe55fca71acbd --password password.txt
 
 ```
 
@@ -362,7 +364,7 @@ net.version
 eth.blockNumber
 ```
 
-**Should return the latest block mined by Node 1**
+**Should return the latest block mined by Node 1 (be careful of capitalization in Javascript!)**
 
 ```
 eth.coinbase
@@ -382,7 +384,7 @@ Open the document labeled `poa-accounts.txt` to see the Ethereum addresses for *
 
 ## Constructing and Sending Transactions
 
-Navigate to the `geth console` tab on one of your node terminal windows. 
+Navigate to the `geth console` tab on one your Node 1 terminal. 
 
 The command below is a generic one to send ether (the cryptocurrency unit for Ethereum networks) from one account to another account. Substitute `'RECEIPIENT_NODE_ADDRESS'` with the forty-character address (surrounded by quotes `''` but with the `0x` prefix) of where you'd like to send it (For example, if you're Node 1, that will be Node 2 or Node 3).
 
