@@ -231,7 +231,7 @@ We can see we've been successful when client returns:
 Successfully wrote genesis state
 ```
 
-Now, we'd like to actually _start_ the Ethereum protocol running on our custom PoA genesis block. To do that, please enter the following command (this is also provided locally in `geth-start-local.txt` located within the `node1` directory):
+Now, we'd like to actually _start_ the Ethereum protocol running on our custom PoA genesis block. To do that, please enter the following command (this is also provided locally in `PoA Workshop Commands.txt` located within the `geth-poa-tutorial` directory):
 
 ```
 geth --datadir ./ --syncmode 'full' --port 30311 --rpc --rpcaddr '0.0.0.0' --rpccorsdomain "*" --rpcport 8502 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --bootnodes 'enode://ea2cab82d19b0704299ff837c9e10ee90841d24503e2f6d993fafbf351d9b6a1860cb6f20eee0f35412c4c28ca68c0720f623792f24abdf2ad0d386598a5b4e2@127.0.0.1:30310' --networkid 1515 --gasprice '1' --allow-insecure-unlock -unlock 1a4b71b48498237d2817be049b4bc43fad971bca --password password.txt --mine
