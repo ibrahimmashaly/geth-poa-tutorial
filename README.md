@@ -384,7 +384,7 @@ Open the document labeled `poa-accounts.txt` to see the Ethereum addresses for *
 
 ## Constructing and Sending Transactions
 
-Navigate to the `geth console` tab on one your Node 1 terminal. 
+Navigate to the `geth console` tab on your Node 1 terminal. 
 
 The command below is a generic one to send ether (the cryptocurrency unit for Ethereum networks) from one account to another account. Substitute `'RECEIPIENT_NODE_ADDRESS'` with the forty-character address (surrounded by quotes `''` but with the `0x` prefix) of where you'd like to send it (For example, if you're Node 1, that will be Node 2 or Node 3).
 
